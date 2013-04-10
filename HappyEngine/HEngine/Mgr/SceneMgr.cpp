@@ -72,7 +72,7 @@ ObjectMgr::ObjectMgr(RenderMgr* SceneRen):SceneNode(SceneRen){
 void SceneMgr::SetCamera()
 {
 	D3DXVECTOR3 vEyePt( -70.0f, 70.0f,-70.0f );
-    D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 0.0f );
+    D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 1.0f );
     D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
     D3DXMATRIXA16 matView;
     D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
@@ -94,5 +94,10 @@ void SceneMgr::UpdateCamera()
 		m = *pView * m_matProj;				// World좌표를 얻기위해서 View * Proj행렬을 계산한다.
 		m_pFrustum->Make( &m );	// View*Proj행렬로 Frustum을 만든다.
 		m_pFrustum->ViewSet(pView);
+		//m_pFrustum->m_vTempPos = HCamera.CnodeList[0]->GetP
 		//m_pFrustum->ProjSet( &m_matProj );
+		m_pFrustum->m_vTempPos = HCamera.CnodeList[0]->m_vEye;
+		m_pFrustum->m_vLookAt = HCamera.CnodeList[0]->m_vLookat;
+		m_pFrustum->m_vUpPos = HCamera.CnodeList[0]->m_vUp;
+		m_pFrustum->m_vTempCamera = *pView;
 }

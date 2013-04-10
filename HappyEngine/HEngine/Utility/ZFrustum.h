@@ -18,12 +18,17 @@ class ZFrustum
 	D3DXVECTOR3	m_vPos;		/// 현재 카메라의 월드좌표
 	D3DXVECTOR3	m_vPos2;		/// 현재 카메라의 far 평면의 중점
 	D3DXVECTOR3 m_vLook;    /// 현재 카메라의 Look 벡터(m_vPos2 - m_vPos)
+
+	D3DXVECTOR3	m_vTempPos;		/// 현재 카메라의 월드좌표(임시 테스트)
+	D3DXVECTOR3	m_vLookAt;		/// 현재 카메라의 월드좌표(임시 테스트)
+	D3DXVECTOR3	m_vUpPos;		/// 현재 카메라의 월드좌표(임시 테스트)
+	D3DXMATRIXA16	m_vTempCamera;		/// 현재 카메라의 행렬(임시 테스트)
 		
 	D3DXPLANE	m_plane[6];	/// 프러스텀을 구성하는 6개의 평면
 
 	D3DXMATRIXA16* m_matView;  //카메라 뷰행렬주소 저장
 	D3DXMATRIXA16* m_matProj;  //카메라 뷰행렬주소 저장
-
+	
 
 		int JCMODE1;//2. 쿼드트리 - 스플래팅 1번
 				//3. 쿼드트리 - 스플래팅 2번

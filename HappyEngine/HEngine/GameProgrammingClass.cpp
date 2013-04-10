@@ -133,19 +133,20 @@ void GameProgrammingClass::SetupMatrix()
     D3DXMatrixRotationY( &matWorld, fAngle );
     GameRender->g_pd3dDevice->SetTransform( D3DTS_WORLD, &matWorld );
 
-
-    
+	
+    /*
     D3DXVECTOR3 vEyePt( 6.0f, 6.0f,-10.0f );
 	D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 0.0f );
     D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
     D3DXMATRIXA16 matView;
     D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
     GameRender->g_pd3dDevice->SetTransform( D3DTS_VIEW, &matView );
-
+	*/
    
     D3DXMATRIXA16 matProj;
     D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI/4, 1.0f, 1.0f, 400.0f );
     GameRender->g_pd3dDevice->SetTransform( D3DTS_PROJECTION, &matProj );
+	
 }
 
 
@@ -153,9 +154,10 @@ void GameProgrammingClass::UpdateMatrix(){
 
     D3DXMATRIXA16 matWorld;
     
-    UINT  iTime  = timeGetTime() % 1000;
-    FLOAT fAngle = iTime * (2.0f * D3DX_PI) / 1000.0f;
-    D3DXMatrixRotationY( &matWorld, fAngle );
+    //UINT  iTime  = timeGetTime() % 1000;
+    //FLOAT fAngle = iTime * (2.0f * D3DX_PI) / 1000.0f;
+    //D3DXMatrixRotationY( &matWorld, fAngle );
+	D3DXMatrixIdentity( &matWorld );
 	
 	matWorld=matWorld*NodeMatrixReturn();
     GameRender->g_pd3dDevice->SetTransform( D3DTS_WORLD, &matWorld );

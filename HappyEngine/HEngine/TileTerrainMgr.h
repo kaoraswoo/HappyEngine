@@ -21,7 +21,8 @@ public:
 	typedef boost::shared_ptr<HSplatting> HSplattingPtr;
 	typedef boost::shared_ptr<HPick> HPickPtr;
 	
-	
+
+	TileTerrainPtr GetTerrainInstance(){return m_pTileTerrain;}
 
 	RenderMgr* TileTerrainMgrRender;
 	LPDIRECT3DDEVICE9		m_pd3dDevice;

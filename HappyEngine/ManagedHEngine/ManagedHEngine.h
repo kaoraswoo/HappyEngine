@@ -294,6 +294,18 @@ namespace ManagedHEngine {
 		{
 			TileTerrainNode->SetHeightEditMode(mode);
 		}
+
+		//LOD Rate ¾ò±â
+		float GetLODrate()
+		{
+			return TileTerrainNode->GetTerrainInstance()->GetLODrate();
+		}
+
+		//LOD Rate Set
+		void SetLODrate(float rate)
+		{
+			TileTerrainNode->GetTerrainInstance()->SetLODrate(rate);
+		}
 		
 
 	};

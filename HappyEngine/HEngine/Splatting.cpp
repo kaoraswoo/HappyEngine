@@ -92,26 +92,26 @@ bool HSplatting::LoadTextures()
 
 	bUpdateBaseTex = true;
 	strBaseTex.clear();
-	strBaseTex.insert(0, strFolderPath + "\\..\\..\\Data\\textures\\¹Ù´Ú.JPG");
+	strBaseTex.insert(0, strFolderPath + "\\..\\..\\Data\\textures\\¿¬µÎ»öÇ®.jpg");
 	
 
 	bUpdateSplatting[0] = true;
 	strSplattingTex[0].clear();
-	strSplattingTex[0].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\³ì»öÇ®.jpg");
+	strSplattingTex[0].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\02_basic_grass.jpg");
 
 	bUpdateSplatting[1] = true;
 	strSplattingTex[1].clear();
-	strSplattingTex[1].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\ÁøÈë.jpg");
+	strSplattingTex[1].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\03_basic_send.jpg");
 	
 
 	bUpdateSplatting[2] = true;
 	strSplattingTex[2].clear();
-	strSplattingTex[2].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\È¸»öµ¹.jpg");
+	strSplattingTex[2].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\04_basic_volcano.jpg");
 	
 
 	bUpdateSplatting[3] = true;
 	strSplattingTex[3].clear();
-	strSplattingTex[3].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\darkgravel01.jpg");
+	strSplattingTex[3].insert(0, strFolderPath + "\\..\\..\\Data\\textures\\05_basic_rock.png");
 	
 
 	_initTexture();

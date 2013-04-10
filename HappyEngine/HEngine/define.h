@@ -20,6 +20,8 @@
 
 
 
+
+
 #ifndef MAINBODY
 #define DECLARE extern
 #else
@@ -100,6 +102,6 @@ struct BRUSHVERTEX
 
 #define ALPHA_TEXTURE_SIZE	256
 #define WIDTH	129.0f
-#define HEIGHT	129.0f
+//#define HEIGHT	129.0f
 #define SMOOTH		10
 #define BRUSH_SIZE	2

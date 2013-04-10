@@ -218,6 +218,9 @@ public:
 	void _GetLODLevel(D3DXVECTOR3 look, int index);		// 카메라Look과 타일번호 를 통해 타일의 LOD레벨을 설정한다.
 	void _SetupCrack(int index);						// index = 타일번호, 상하좌우 타일과 비교해서 크랙을 설정한다.
 
+	float GetLODrate(){return m_fLODRate;}
+	void SetLODrate(float rate){m_fLODRate = rate;}
+
 	//높이맵 정보 Set
 	void SetHeight();
 
