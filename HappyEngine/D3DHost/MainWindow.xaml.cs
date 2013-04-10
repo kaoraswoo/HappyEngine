@@ -113,6 +113,8 @@ namespace D3DHost
                     break;
             }
             
+            //LOD Rate
+            this.LODLEVEL.Text = m_HControl.m_HEngine.GetLODrate().ToString();
             
             
 
@@ -551,6 +553,26 @@ namespace D3DHost
         private void radioFlatLand_Checked(object sender, RoutedEventArgs e)
         {
             m_HControl.m_HEngine.SetHeightEditMode(3);
+        }
+
+        private void LODLEVEL_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (e.Text !="." && !char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void LODLEVEL_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                m_HControl.m_HEngine.SetLODrate(float.Parse(this.LODLEVEL.Text));
+            }
         }
 
        

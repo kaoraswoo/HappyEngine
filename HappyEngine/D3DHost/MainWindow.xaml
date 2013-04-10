@@ -6,7 +6,7 @@
     xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
     xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
     xmlns:wpg="clr-namespace:System.Windows.Controls"
-    Title="Happy TerrainEditor in WPF" Height="740" Width="1024" Background="PaleGoldenrod">
+    Title="Happy TerrainEditor in WPF" Height="740" Width="1024" Background="PaleGoldenrod" Icon="/D3DHost;component/resource/HappyEngineIcon.png">
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -58,7 +58,7 @@
                                         <CheckBox Margin="0,0,7,0" Name="WIREMODE" d:LayoutOverrides="Width" Content="와이어프레임" Click="WIREMODE_Click" />
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                                             <TextBlock TextWrapping="Wrap" Text="LOD Level" Margin="3,0,0,0" VerticalAlignment="Center"/>
-                                            <TextBox TextWrapping="Wrap" Name="LODLEVEL" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                            <TextBox TextWrapping="Wrap" Name="LODLEVEL" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" PreviewTextInput="LODLEVEL_PreviewTextInput" KeyDown="LODLEVEL_KeyDown" />
                                         </StackPanel>
                                     </StackPanel>
                                 </GroupBox>
