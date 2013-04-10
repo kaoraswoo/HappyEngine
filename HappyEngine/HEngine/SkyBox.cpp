@@ -1,6 +1,13 @@
+//-------------------------------------------------------------------------------------
+// 스카이박스
+// 단순 입방체 클래스
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
 
 #include "SkyBox.h"
 
+//-------------------------------------------------------------------------------------
 CSkyBox::CSkyBox(RenderMgr* SceneRen):SceneNode(SceneRen)
 {
     SkyRender=SceneRen;
@@ -14,26 +21,33 @@ CSkyBox::CSkyBox(RenderMgr* SceneRen):SceneNode(SceneRen)
 	m_name="SkyBox";
 }
 
-void CSkyBox::draw(){
+//-------------------------------------------------------------------------------------
+void CSkyBox::draw()
+{
 	Render();
 }
-void CSkyBox::draw(ZFrustum* pFrustum){
+
+//-------------------------------------------------------------------------------------
+void CSkyBox::draw(ZFrustum* pFrustum)
+{
 	Render();
 }
-void CSkyBox::SetMesh(){
+
+//-------------------------------------------------------------------------------------
+void CSkyBox::SetMesh()
+{
 	Create();
 }
 
-
+//-------------------------------------------------------------------------------------
 CSkyBox::~CSkyBox(void)
 {
 	Destroy();
 }
 
-
+//-------------------------------------------------------------------------------------
 HRESULT	CSkyBox::Create()
 {
-
 
 	// Cleanup previous buffers if any
 	//Destroy();
@@ -41,15 +55,16 @@ HRESULT	CSkyBox::Create()
 	m_pd3dDevice->AddRef();
 
 	// 버텍스 버퍼 생성
- InitVB( );
+	InitVB( );
 
 	// 인덱스 버퍼 생성
 	InitIB();
-LoadTexture(LPCWSTR("..\\..\\Data\\skybox.bmp"));
+	// sky 텍스쳐
+	LoadTexture(LPCWSTR("..\\..\\Data\\skybox.bmp"));
 	return S_OK;
 }
 
-
+//-------------------------------------------------------------------------------------
 void	CSkyBox::Render( )
 {
 
@@ -78,20 +93,18 @@ void	CSkyBox::Render( )
 	m_pd3dDevice->DrawIndexedPrimitive( D3DPT_TRIANGLELIST, 0, 0, 18, 0, 12 );
 }
 
-
-void	CSkyBox::Destroy( )
+//-------------------------------------------------------------------------------------
+void CSkyBox::Destroy()
 {
 	m_pIB->Release();
 	m_pVB->Release();
 	m_pTexture ->Release();
 }
 
-
-HRESULT	CSkyBox::InitVB( )
+//-------------------------------------------------------------------------------------
+HRESULT	CSkyBox::InitVB()
 {
-
-
-
+	
 	_sVertex vertices[] =
 	{
 		 1.000000f, -1.000000f,  1.000000f, 0.997500f, 0.325700f,
@@ -133,11 +146,9 @@ HRESULT	CSkyBox::InitVB( )
 	return S_OK;
 }
 
-
-HRESULT	CSkyBox::InitIB( )
+//-------------------------------------------------------------------------------------
+HRESULT	CSkyBox::InitIB()
 {
-
-
 	_sTriangle indices[] =
 	{
 		0,1,2,
@@ -171,15 +182,16 @@ HRESULT	CSkyBox::InitIB( )
 	return S_OK;
 }
 
-
+//-------------------------------------------------------------------------------------
 HRESULT	CSkyBox::LoadTexture( LPCWSTR strFileName )
 {
 
- D3DXCreateTextureFromFile( m_pd3dDevice, LPCSTR(strFileName), &m_pTexture );
+	D3DXCreateTextureFromFile( m_pd3dDevice, LPCSTR(strFileName), &m_pTexture );
 	return S_OK;
 }
 
 
+//-------------------------------------------------------------------------------------
 void	CSkyBox::SetEyePt ( CONST D3DXVECTOR3* pEyePt )
 {
 	

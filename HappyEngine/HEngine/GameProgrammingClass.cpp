@@ -1,28 +1,36 @@
+//-------------------------------------------------------------------------------------
+//! 회전하는 정육면체 테스트용 노드(노드 추가시 참조용)
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "GameProgrammingClass.h"
 
-
-
-
-GameProgrammingClass::GameProgrammingClass(RenderMgr *SceneRen):SceneNode(SceneRen){
-GameRender=SceneRen;
-SetupMatrix();
-m_name = "Cube";
+//-------------------------------------------------------------------------------------
+GameProgrammingClass::GameProgrammingClass(RenderMgr *SceneRen):SceneNode(SceneRen)
+{
+	GameRender=SceneRen;
+	SetupMatrix();
+	m_name = "Cube";
 }
 
-GameProgrammingClass::~GameProgrammingClass(){
-		m_pVB->Release();
+//-------------------------------------------------------------------------------------
+GameProgrammingClass::~GameProgrammingClass()
+{
+	m_pVB->Release();
 	m_pIB->Release();
 }
 
-
-void GameProgrammingClass::draw(ZFrustum* pFrustum){
+//-------------------------------------------------------------------------------------
+void GameProgrammingClass::draw(ZFrustum* pFrustum)
+{
 	draw();
 }
 
-void GameProgrammingClass::draw(){
-		
-
-    
+//-------------------------------------------------------------------------------------
+void GameProgrammingClass::draw()
+{
+   
         UpdateMatrix();
 
 		GameRender->g_pd3dDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
@@ -42,14 +50,17 @@ void GameProgrammingClass::draw(){
 
 }
 
-void GameProgrammingClass::SetMesh(){
-InitVB();
-InitIB();
+//-------------------------------------------------------------------------------------
+void GameProgrammingClass::SetMesh()
+{
+
+	InitVB();
+	InitIB();
 
 }
 
 
-
+//-------------------------------------------------------------------------------------
 HRESULT GameProgrammingClass::InitVB()
 {
     
@@ -86,6 +97,7 @@ HRESULT GameProgrammingClass::InitVB()
     return S_OK;
 }
 
+//-------------------------------------------------------------------------------------
 HRESULT GameProgrammingClass::InitIB()
 {
 
@@ -119,15 +131,13 @@ HRESULT GameProgrammingClass::InitIB()
 
 }
 
-
+//-------------------------------------------------------------------------------------
 void GameProgrammingClass::SetupMatrix()
 {
-    
+    //회전
     D3DXMATRIXA16 matWorld;
 
-	
-
-	
+		
     UINT  iTime  = timeGetTime() % 1000;
     FLOAT fAngle = iTime * (2.0f * D3DX_PI) / 1000.0f;
     D3DXMatrixRotationY( &matWorld, fAngle );
@@ -149,20 +159,18 @@ void GameProgrammingClass::SetupMatrix()
 	
 }
 
-
+//-------------------------------------------------------------------------------------
 void GameProgrammingClass::UpdateMatrix(){
 
     D3DXMATRIXA16 matWorld;
     
-    //UINT  iTime  = timeGetTime() % 1000;
-    //FLOAT fAngle = iTime * (2.0f * D3DX_PI) / 1000.0f;
-    //D3DXMatrixRotationY( &matWorld, fAngle );
+    UINT  iTime  = timeGetTime() % 1000;
+    FLOAT fAngle = iTime * (2.0f * D3DX_PI) / 1000.0f;
+    D3DXMatrixRotationY( &matWorld, fAngle );
 	D3DXMatrixIdentity( &matWorld );
 	
 	matWorld=matWorld*NodeMatrixReturn();
     GameRender->g_pd3dDevice->SetTransform( D3DTS_WORLD, &matWorld );
-
-	
 
 	D3DXMATRIXA16 matProj;
     D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI/4, 1.0f, 1.0f, 700.0f );

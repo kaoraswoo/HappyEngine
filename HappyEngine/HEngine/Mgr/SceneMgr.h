@@ -1,3 +1,9 @@
+//-------------------------------------------------------------------------------------
+//! 씬매니저 클래스
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #ifndef _Renderer_h_
 #define _Renderer_h_
 #include "Renderer.h"
@@ -7,6 +13,7 @@
 #include "Utility\ZXML.h"
 #include "Utility\HObject.h"
 #include "Utility\HFont.h"
+
 struct sTriangle
 {
 	WORD	_0, _1, _2;		// 일반적으로 인덱스는 16비트의 크기를 갖는다.
@@ -14,8 +21,7 @@ struct sTriangle
 };
 
 
-
-
+//-------------------------------------------------------------------------------------
 class SceneNode{
 public:
 	std::string m_name;
@@ -24,17 +30,20 @@ public:
 	D3DXVECTOR3 Up;     //Up벡터
 	D3DXVECTOR3 Speed;  //속도
 	D3DXVECTOR3 Size;   //크기(스케일)
-void NodeSetPos(float x,float y,float z);  //일단 위치설정함수
-D3DXMATRIX NodeMatrixReturn();
+
+	void NodeSetPos(float x,float y,float z);  //일단 위치설정함수
+	D3DXMATRIX NodeMatrixReturn();
 
 
-//아래로는 상속할때 쓰는 것들
+	//아래로는 상속할때 쓰는 것들(virtual)
 	SceneNode(RenderMgr* SceneRen);
 	virtual void draw()=0;
 	virtual void SetMesh()=0;
 	virtual void draw(ZFrustum* pFrustum)=0;
 };
 
+
+//-------------------------------------------------------------------------------------
 class SceneMgr{
 public:
 	
@@ -43,7 +52,6 @@ public:
 	std::vector<SceneNode*>::iterator SnodeIterator;
 	std::map<std::string, SceneNode* > m_maplist;
 	std::map<std::string, SceneNode* >::iterator SnodeMapitor;
-	//std::string GetSceneNode();
 
 	HCCameraMgr HCamera; //카메라관리 
 	void SetCamera();
@@ -72,16 +80,16 @@ public:
 };
 
 
+
+//-------------------------------------------------------------------------------------
 class ObjectMgr:public SceneNode{
 public:
 	int ObjectNum;
 
 	ObjectMgr(RenderMgr* SceneRen);
-
 	void draw(){ObjectNum=2;
 	printf("오브젝트넘버:%d ",ObjectNum);};
 	virtual void SetMesh(){}
-	
 
 };
 

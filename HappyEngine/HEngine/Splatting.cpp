@@ -334,7 +334,15 @@ HRESULT HSplatting::_initTexture(void)
 		{
 			if(m_pBaseTexture != NULL)
 				m_pBaseTexture->Release();
-			if( FAILED( D3DXCreateTextureFromFile( m_pd3dDevice, strBaseTex.c_str(), &m_pBaseTexture) ) )
+			if( FAILED( 
+					D3DXCreateTextureFromFile
+						( 
+							m_pd3dDevice, 
+							strBaseTex.c_str(), 
+							&m_pBaseTexture
+						) 
+					  ) 
+			  )
 			{
 				TCHAR *temp = NULL;
 				MessageBox(NULL, temp, TEXT("_initTexture FAILED"), 0 );
@@ -391,6 +399,7 @@ void HSplatting::UpdateTextureFile(int index, LPCTSTR str)
 	_initTexture();
 }
 
+//--------------------------------------------------------------------------------------------
 void HSplatting::ChangeTextureFile(int index, std::string str)
 {
 	bUpdateSplatting[index] = true;
@@ -399,6 +408,7 @@ void HSplatting::ChangeTextureFile(int index, std::string str)
 	_initTexture();
 }
 
+//--------------------------------------------------------------------------------------------
 // 알파맵파일에서 읽기
 void HSplatting::LoadAlphaMap(int index,  LPCTSTR str)
 {
@@ -414,6 +424,7 @@ void HSplatting::LoadAlphaMap(int index,  LPCTSTR str)
 	}
 }
 
+//--------------------------------------------------------------------------------------------
 // 알파맵들 일괄로드
 void HSplatting::LoadAlphaMaps(std::string FolderName)
 {
@@ -439,6 +450,7 @@ void HSplatting::LoadAlphaMaps(std::string FolderName)
 	}
 }
 
+//--------------------------------------------------------------------------------------------
 // 알파맵들 일괄저장
 void HSplatting::SaveAlphaMaps(std::string FolderName)
 {
@@ -459,17 +471,18 @@ void HSplatting::SaveAlphaMaps(std::string FolderName)
 	}
 }
 
-
+//--------------------------------------------------------------------------------------------
 const char* HSplatting::GetBaseTextureName()
 {
 	return strBaseTex.c_str();
 }
+//--------------------------------------------------------------------------------------------
 const char* HSplatting::GetTextureName(int i)
 {
 	return strSplattingTex[i].c_str();
 }
 
-
+//--------------------------------------------------------------------------------------------
 void HSplatting::SetScale(float tx, float ty)
 {
 	m_XtileScale = tx;
@@ -477,7 +490,7 @@ void HSplatting::SetScale(float tx, float ty)
 }
 
 
-//기존 ZTerrain에서 썼던 스플래팅
+//기존 Legacy ZTerrain에서 썼던 스플래팅
 /*
 void HSplatting::HSplattingLoad(LPSTR lpFilename){  //베이스가 될 것은 미리 다른 지형클래스에서 깔아놓음 이 클래스에서는 그 위에 알파맵으로 합성해서 덮을것만 로드
 	if(TexNumber<=3){  //일단 3장으로 제한

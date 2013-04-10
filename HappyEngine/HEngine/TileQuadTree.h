@@ -1,3 +1,12 @@
+//-------------------------------------------------------------------------------------
+// 타일식 쿼드트리
+// 타일식으로 만든 강좌 참조 출처
+// http://blog.naver.com/motonhj82?Redirect=Log&logNo=130032333560
+// 
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #ifndef _TILEQUADTREE_H_
 #define _TILEQUADTREE_H_
 

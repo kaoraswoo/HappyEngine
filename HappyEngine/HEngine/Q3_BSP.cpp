@@ -1,6 +1,13 @@
-//퀘이크용 bsp로드 - 퀘이크 소스 발췌
+//-------------------------------------------------------------------------------------
+// 퀘이크용 bsp로드 - 퀘이크 소스 발췌
+//! BSP 부분에서 수정(BSP 로드부분 발췌함)
+//! 발췌 한 곳 - http://blog.naver.com/ryanii?Redirect=Log&logNo=20017051226
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
 #include "Q3_BSP.h"
 
+//-------------------------------------------------------------------------------------
 void FindTextureExtension(char *strFileName)
 {
 	char strJPGPath[MAX_PATH] = {0};
@@ -39,7 +46,7 @@ void FindTextureExtension(char *strFileName)
 //******************************************************************//
 //	Not much to see here. Just yer good ol' Constructor
 //******************************************************************//
-
+//-------------------------------------------------------------------------------------
 Q3_BSP::Q3_BSP(RenderMgr* SceneRen):SceneNode(SceneRen)
 {
 	m_name = "BSP Map";
@@ -63,6 +70,8 @@ Q3_BSP::Q3_BSP(RenderMgr* SceneRen):SceneNode(SceneRen)
 
 	m_pRenderState[rShowTextureMap] = true;
 }
+
+//-------------------------------------------------------------------------------------
 void Q3_BSP::draw(){
 	
 	D3DXMATRIXA16 matWorld;
@@ -85,9 +94,12 @@ void Q3_BSP::draw(){
     m_pDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	
 }
+//-------------------------------------------------------------------------------------
 void Q3_BSP::draw(ZFrustum* pFrustum){
 	draw();
 }
+//-------------------------------------------------------------------------------------
+//ToDo : 임시 하드코딩
 void Q3_BSP::SetMesh(){
    Load("../../Data/maps/Tutorial.bsp");
 }
@@ -101,7 +113,7 @@ void Q3_BSP::SetMesh(){
 //	that look really confusing in a text editor
 //	but read really nicely in C(++)
 //******************************************************************//
-
+//-------------------------------------------------------------------------------------
 bool Q3_BSP::Load(const char *strFileName)
 {	
 	FILE *fp = NULL;
@@ -301,7 +313,7 @@ void Q3_BSP::Build()
 //	place in our Vertex and Index buffers, it's remarkably
 //	simple to draw it.
 //******************************************************************//
-
+//-------------------------------------------------------------------------------------
 void Q3_BSP::Render()
 {
 	// All of this info is really rather redundant now, but
@@ -367,17 +379,17 @@ void Q3_BSP::Render()
 //******************************************************************//
 // None of the rest of this is too complicated, so I'll
 // leave you to figure it out.
-
+//-------------------------------------------------------------------------------------
 void Q3_BSP::SetRenderState(BSP_RENDER_STATES state, bool value)
 {
 	m_pRenderState[state] = value;
 }
-
+//-------------------------------------------------------------------------------------
 bool Q3_BSP::GetRenderState(BSP_RENDER_STATES state)
 {
 	return m_pRenderState[state];
 }
-
+//-------------------------------------------------------------------------------------
 void Q3_BSP::Destroy()
 {
 	m_pIB->Release();
@@ -388,7 +400,7 @@ void Q3_BSP::Destroy()
 	delete [] m_pFaces;
 	delete [] m_pTextures;
 }
-
+//-------------------------------------------------------------------------------------
 Q3_BSP::~Q3_BSP()
 {
 	// Call our destroy function

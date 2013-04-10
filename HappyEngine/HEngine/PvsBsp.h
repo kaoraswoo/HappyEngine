@@ -1,3 +1,10 @@
+//-------------------------------------------------------------------------------------
+//! Pvs 추가 //PVS 포털 생성 클래스
+//! BSP 부분에서 수정
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #ifndef BSP_H
 #define BSP_H
 
@@ -368,41 +375,40 @@ public:
 	void RenderFaces(
 					 int nStartFace,
 					 int nNumFaces);
-void RenderLeaf(
-					 int nLeafIndex);
+	void RenderLeaf(
+						 int nLeafIndex);
 
-void DrawPlane(
-				   stNode * pNode,
-		           stPlane * pPlane);
+	void DrawPlane(
+					   stNode * pNode,
+					   stPlane * pPlane);
 
-void CheckNode( 
-				   int nNode,
-				   D3DXVECTOR3 pStart,
-				   D3DXVECTOR3 pEnd);
+	void CheckNode( 
+					   int nNode,
+					   D3DXVECTOR3 pStart,
+					   D3DXVECTOR3 pEnd);
 
-int FindLeaf( 
-				  const D3DXVECTOR3& Pos);
+	int FindLeaf( 
+					  const D3DXVECTOR3& Pos);
 
-void CheckNodeForLine( 
-							D3DXVECTOR3 pStart,
-							D3DXVECTOR3 pEnd);
+	void CheckNodeForLine( 
+								D3DXVECTOR3 pStart,
+								D3DXVECTOR3 pEnd);
 
-void CheckMultipleLines(
-							 D3DXVECTOR3 pOrigin,
-							 D3DXVECTOR3 vDir,
-							 float fLen);
+	void CheckMultipleLines(
+								 D3DXVECTOR3 pOrigin,
+								 D3DXVECTOR3 vDir,
+								 float fLen);
 
-//포털로 출력
-bool isClusterVisible(int visCluster, int testCluster);
-void DrawFace(
-				  int nFace);
-void TurnFaceOn(int nFace);
-void TurnAllFacesOff();
-void RenderAllFaces();
-void CheckClusterPoint(
-						   D3DXVECTOR3 pPoint );
-D3DXVECTOR3 TransWMatrix(D3DXVECTOR3 PreVec);
-void draw4(HObject *obj);
+	//포털로 출력
+	bool isClusterVisible(int visCluster, int testCluster);
+	void DrawFace(int nFace);
+	void TurnFaceOn(int nFace);
+	void TurnAllFacesOff();
+	void RenderAllFaces();
+	void CheckClusterPoint(
+							   D3DXVECTOR3 pPoint );
+	D3DXVECTOR3 TransWMatrix(D3DXVECTOR3 PreVec);
+	void draw4(HObject *obj);
 };
 
 #endif

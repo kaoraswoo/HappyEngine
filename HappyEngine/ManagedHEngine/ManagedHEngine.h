@@ -25,15 +25,15 @@ namespace ManagedHEngine {
 		Q3_BSP* BspNode;  // BSP 통짜맵
 		TileTerrainMgr* TileTerrainNode;  //타일식 쿼드트리,스플래팅
 		D2TileMgr* AxisNode; //좌표축 출력
-		ZTerrain* QuadNode; 
+		ZTerrain* QuadNode; // Legacy버전의 쿼드트리 노드
 		CSkyBox* SkyNode; //스카이 박스
 		BillBoard* BillBoardNode; //빌보드
 		XManager* XfileNode;  //오브젝트
 		CBSP* PotalNode;
 		
-		bool m_bWireframe;
+		bool m_bWireframe; //와이어프레임 여부
 		
-
+		//--------------------------------------------------------------------------------------------
 		void Create(IntPtr hWnd)
 		{
 			//와이어프레임모드 false
@@ -78,15 +78,11 @@ namespace ManagedHEngine {
 			BillBoardNode = new BillBoard(pHappy->RenInstance);
 			BillBoardNode->SetMesh();
 			pHappy->AddSceneNode( BillBoardNode );
-
-
-			
 			
 			//BSP 맵 출력
 			BspNode=new Q3_BSP(pHappy->RenInstance);
 			BspNode->SetMesh();
 			pHappy->AddSceneNode( BspNode );
-			
 
 			//BSP 포탈 및 PVS 노드 생성
 			PotalNode=new CBSP(pHappy->RenInstance);
@@ -97,13 +93,12 @@ namespace ManagedHEngine {
 			SkyNode = new CSkyBox(pHappy->RenInstance);
 			SkyNode->SetMesh();
 			pHappy->AddSceneNode( SkyNode );
-
 			
 			// 타일맵 쿼드트리 지형(스플래팅 포함)
 			TileTerrainNode = new TileTerrainMgr(pHappy->RenInstance);
 			TileTerrainNode->SetMesh();
-			//pHappy->AddSceneNode( TileTerrainNode );
-
+			//임시로 제외(모드에 따라서 TerrainRender 따로 렌더링하므로)
+			//pHappy->AddSceneNode( TileTerrainNode ); 
 			
 
 			// 카메라 설정 init
@@ -112,6 +107,7 @@ namespace ManagedHEngine {
 		
 		}
 
+		//--------------------------------------------------------------------------------------------
 		ArrayList^ GetSceneList()
 		{
 			ArrayList^ TempList2 = gcnew ArrayList();
@@ -127,36 +123,34 @@ namespace ManagedHEngine {
 			return TempList2;
 		}
 
+		//--------------------------------------------------------------------------------------------
 		void Destroy()
 		{
 			delete practices;
 			delete TileTerrainNode;
 			delete pHappy;
-
 		}
 
+		//--------------------------------------------------------------------------------------------
 		void TerrainRender()
 		{
 			pHappy->RenInstance->g_pd3dDevice->BeginScene();
+			//와이어 프레임 여부
 			pHappy->RenInstance->g_pd3dDevice->SetRenderState(  D3DRS_FILLMODE, m_bWireframe ? D3DFILL_WIREFRAME : D3DFILL_SOLID );
 			pHappy->RenInstance->g_pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(97,97,97), 1.0f, 0 );
 				// Update 카메라
 				pHappy->UpdateCamera();
-
 				// 타일 쿼드트리/스플래팅 지형
 				TileTerrainNode->draw( pHappy->m_pFrustum );
-				
-
-				
-
 			pHappy->RenInstance->g_pd3dDevice->EndScene();
-			
+			// 디바이스 로스트시 호출
 			if( pHappy->RenInstance->g_pd3dDevice->Present( NULL, NULL, NULL, NULL ) == D3DERR_DEVICELOST )
 			{
 				//pHappy->RenInstance->Reset();
 			}
 		}
 
+		//--------------------------------------------------------------------------------------------
 		void Render( System::String^ nodeName )
 		{
 			std::string _nodeName = marshal_as< std::string>(nodeName);
@@ -190,12 +184,14 @@ namespace ManagedHEngine {
 
 			pHappy->RenInstance->g_pd3dDevice->EndScene();
 			
+			//디바이스 로스트 처리
 			if( pHappy->RenInstance->g_pd3dDevice->Present( NULL, NULL, NULL, NULL ) == D3DERR_DEVICELOST )
 			{
 				//pHappy->RenInstance->Reset();
 			}
 		}
 		
+		//--------------------------------------------------------------------------------------------
 		// 마우스 변화량 따른 카메라 설정
 		void SetCamera(int dx, int dy)
 		{
@@ -207,6 +203,7 @@ namespace ManagedHEngine {
 			pHappy->RenInstance->g_pd3dDevice->SetTransform( D3DTS_VIEW, pmatView );   // 카메라 행렬 셋팅
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 키보드 입력에 따른 카메라 설정
 		void MoveZAxis(float dist)
 		{
@@ -221,6 +218,7 @@ namespace ManagedHEngine {
 			pHappy->RenInstance->g_pd3dDevice->SetTransform( D3DTS_VIEW, pmatView );   // 카메라 행렬 셋팅
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 지형 픽킹
 		void PickRay(int x, int y)
 		{
@@ -231,24 +229,28 @@ namespace ManagedHEngine {
 
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 지형 스플래팅 알파맵 편집 ( bdel: true-지우기 false-그리기 )
 		void DrawAlpha(int selectedIndex, bool bdel)
 		{
 			TileTerrainNode->DrawAlphaMap(selectedIndex, bdel); // DrawAlphaMap( 대상 index, 지울지 그릴지 여부 )
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 지형 높낮이조정
 		void UpdateHeight(float fdelta)
 		{
 			TileTerrainNode->UpdateHeight(fdelta);
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 새지형 생성
 		void NewTerrain(float scale, float heightScale, int tile, int cell)
 		{
 			TileTerrainNode->NewTerrain(scale, heightScale, tile, cell);
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 지형 저장
 		void SaveTerrain( System::String^ filePath )
 		{
@@ -256,6 +258,7 @@ namespace ManagedHEngine {
 			TileTerrainNode->SaveTerrain( _filePath );
 		}
 
+		//--------------------------------------------------------------------------------------------
 		// 지형 로드
 		void LoadTerrain( System::String^ filePath )
 		{
@@ -263,13 +266,18 @@ namespace ManagedHEngine {
 			TileTerrainNode->LoadTerrain( _filePath );
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//선택된 텍스쳐경로얻기
 		System::String^ GetTexturePath(int index)
 		{
-			System::String^ s1 = marshal_as<System::String^>(TileTerrainNode->m_pHSplat->GetTextureName(index));
+			System::String^ s1 = marshal_as<System::String^>
+				(
+					TileTerrainNode->m_pHSplat->GetTextureName(index)
+				);
 			return s1;
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//선택된 텍스쳐경로바꾸기
 		void SetTexturePath(int index, System::String^ strTex)
 		{
@@ -278,29 +286,34 @@ namespace ManagedHEngine {
 			//TileTerrainNode->m_pHSplat->GetTextureName(index);
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//임시 PVS 컬링 테스트
 		void SetPVSObjectNum(int index)
 		{
 			PotalNode->m_selectObjectNum = index;
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//Height모드 얻기
 		int GetHeightEditMode()
 		{
 			return TileTerrainNode->GetHeightEditMode();
 		}
+		//--------------------------------------------------------------------------------------------
 		//Height모드 Set
 		void SetHeightEditMode(int mode)
 		{
 			TileTerrainNode->SetHeightEditMode(mode);
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//LOD Rate 얻기
 		float GetLODrate()
 		{
 			return TileTerrainNode->GetTerrainInstance()->GetLODrate();
 		}
 
+		//--------------------------------------------------------------------------------------------
 		//LOD Rate Set
 		void SetLODrate(float rate)
 		{

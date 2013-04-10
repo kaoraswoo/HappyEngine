@@ -1,3 +1,9 @@
+//-------------------------------------------------------------------------------------
+// 테스트 더미용 오브젝트 위치 생성 및 모드 설정(XMesh에서 참조용)
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #ifndef _SceneNode_h_
  #define _SceneNode_h_
  #include "Mgr\SceneMgr.h"
@@ -27,8 +33,6 @@ public:
 	//4. BSP -오브젝트3 관점
 	//5. BSP -오브젝트4 관점
 	//6. BSP -오브젝트5 관점
-
-
 
 	void GenerateObject();
 

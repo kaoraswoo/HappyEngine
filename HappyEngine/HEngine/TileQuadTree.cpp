@@ -1,11 +1,22 @@
+//-------------------------------------------------------------------------------------
+// 타일식 쿼드트리
+// 타일식으로 만든 강좌 참조 출처
+// http://blog.naver.com/motonhj82?Redirect=Log&logNo=130032333560
+// 
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "TileQuadTree.h"
 
+//---------------------------------------------------------------------------
 // 최초 생성자
 TileQuadTree::TileQuadTree(int tileNum)
 {
 	SetInfo(tileNum);
 }
 
+//---------------------------------------------------------------------------
 void TileQuadTree::SetInfo( int tileNum )
 {
 	m_nTileNum = tileNum;
@@ -26,6 +37,7 @@ void TileQuadTree::SetInfo( int tileNum )
 	}
 }
 
+//---------------------------------------------------------------------------
 // 자식노드를 만들기위한 생성자
 TileQuadTree::TileQuadTree(TileQuadTree *pParent)
 {
@@ -41,6 +53,7 @@ TileQuadTree::TileQuadTree(TileQuadTree *pParent)
 	}
 }
 
+//---------------------------------------------------------------------------
 TileQuadTree::~TileQuadTree()
 {
 	for(int i=0; i<4; i++)
@@ -49,6 +62,7 @@ TileQuadTree::~TileQuadTree()
 	}
 }
 
+//---------------------------------------------------------------------------
 // m_Edge값을 설정한다.
 void TileQuadTree::_SetCorners(int _TL, int _TR, int _BL, int _BR)
 {
@@ -66,7 +80,7 @@ void TileQuadTree::_SetCorners(int _TL, int _TR, int _BL, int _BR)
 	}
 }
 
-
+//---------------------------------------------------------------------------
 TileQuadTree* TileQuadTree::_AddChild(int _TL, int _TR, int _BL, int _BR)
 {
 	TileQuadTree *pChild = new TileQuadTree(this);
@@ -76,6 +90,7 @@ TileQuadTree* TileQuadTree::_AddChild(int _TL, int _TR, int _BL, int _BR)
 	return pChild;
 }
 
+//---------------------------------------------------------------------------
 // 설정된 코너값을 기준으로 4개의 자식노드를 생성한다.
 BOOL TileQuadTree::_SetDivide()
 {
@@ -117,6 +132,7 @@ BOOL TileQuadTree::_SetDivide()
 	return true;
 }
 
+//---------------------------------------------------------------------------
 // 쿼드트리를 만든다.
 void TileQuadTree::BuildQuadTree(TileTerrainPtr pGround)
 {
@@ -153,6 +169,7 @@ void TileQuadTree::BuildQuadTree(TileTerrainPtr pGround)
 	}
 }
 
+//---------------------------------------------------------------------------
 int TileQuadTree::_IsInFrustum(TileTerrainPtr pGround, ZFrustum* pFrustum )
 {
 	BOOL b[4];			// 구의 4모서리점의 포함 여부
@@ -187,6 +204,7 @@ int TileQuadTree::_IsInFrustum(TileTerrainPtr pGround, ZFrustum* pFrustum )
 	return TileQuadTree::PART_IN;
 }
 
+//---------------------------------------------------------------------------
 void TileQuadTree::_FrustumCull(TileTerrainPtr pGround , ZFrustum* pFrustum )
 {
 	int ret;		// 포함 여부, 완전 포함, 부분 포함, 완전 미 포함
@@ -214,6 +232,7 @@ void TileQuadTree::_FrustumCull(TileTerrainPtr pGround , ZFrustum* pFrustum )
 	if(m_pChild[0])	m_pChild[3]->_FrustumCull(pGround, pFrustum);
 }
 
+//---------------------------------------------------------------------------
 void TileQuadTree::_SearchDrawTile(TileTerrainPtr pGround)
 {
 	// 컬링된 노드라면 출력할 필요가 없으므로 바로 리턴한다.
@@ -237,6 +256,7 @@ void TileQuadTree::_SearchDrawTile(TileTerrainPtr pGround)
 	m_pChild[3]->_SearchDrawTile(pGround);
 }
 
+//---------------------------------------------------------------------------
 void TileQuadTree::BuildDrawTiles(TileTerrainPtr pGround, ZFrustum* pFrustum)
 {
 	// 컬링한다.

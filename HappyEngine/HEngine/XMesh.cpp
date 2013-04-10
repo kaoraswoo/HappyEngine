@@ -1,22 +1,27 @@
 #include "XMesh.h"
 
+//--------------------------------------------------------------------------------------------
+XMesh::XMesh(LPDIRECT3DDEVICE9 Device)
+{
 
-XMesh::XMesh(LPDIRECT3DDEVICE9 Device){
 	m_pDevice=Device;
 	
 }
-XMesh::~XMesh(){
+
+//--------------------------------------------------------------------------------------------
+XMesh::~XMesh()
+{
 
 }
 
-BOOL XMesh::LoadX(char *pName){
+//--------------------------------------------------------------------------------------------
+BOOL XMesh::LoadX(char *pName)
+{
 
- LPD3DXBUFFER pD3DXMtrlBuffer;
+	LPD3DXBUFFER pD3DXMtrlBuffer;
 
- char textureFolder[300];
+	char textureFolder[300];
  
-
-
     // Load the mesh from the specified file
     if( FAILED( D3DXLoadMeshFromX( pName, D3DXMESH_SYSTEMMEM, 
 		m_pDevice, NULL, 
@@ -59,6 +64,7 @@ BOOL XMesh::LoadX(char *pName){
 
 }
 
+//--------------------------------------------------------------------------------------------
 void XMesh::Disp(){
 	//m_pDevice->SetRenderState( D3DRS_FILLMODE, D3DFILL_SOLID);
 	//m_pDevice->SetRenderState( D3DRS_LIGHTING, TRUE );
@@ -77,7 +83,7 @@ void XMesh::Disp(){
 }
 
 
-
+//--------------------------------------------------------------------------------------------
 XManager::XManager(RenderMgr* SceneRen):SceneNode(SceneRen)
 {
 	XMeshRender=SceneRen;
@@ -87,13 +93,18 @@ XManager::XManager(RenderMgr* SceneRen):SceneNode(SceneRen)
 	m_dummy.GenerateObject();  //테스트용 및 제출용으로 임의 생성
 
 }
-XManager::~XManager(){
-delete XobjectFont;
+//--------------------------------------------------------------------------------------------
+XManager::~XManager()
+{
+	delete XobjectFont;
 }
-
-void XManager::draw(){
+//--------------------------------------------------------------------------------------------
+void XManager::draw()
+{
 }
-void XManager::draw(ZFrustum* pFrustum){
+//--------------------------------------------------------------------------------------------
+void XManager::draw(ZFrustum* pFrustum)
+{
 
 	for(int j=0;j<30;j++)
 	{
@@ -101,11 +112,14 @@ void XManager::draw(ZFrustum* pFrustum){
 	}
 
 }
-void XManager::SetMesh(){
+//--------------------------------------------------------------------------------------------
+void XManager::SetMesh()
+{
 }
 
-
-BOOL XManager::XLoad(char *pName){  //
+//--------------------------------------------------------------------------------------------
+BOOL XManager::XLoad(char *pName)
+{
 
 	XMesh DumyX(XMeshRender->g_pd3dDevice);
 	DumyX.LoadX(pName);
@@ -114,6 +128,7 @@ BOOL XManager::XLoad(char *pName){  //
 
 }
 
+//--------------------------------------------------------------------------------------------
 void XManager::DrawSpecific(HObject *obj){
 	
 	char obnumber[15];
@@ -129,7 +144,7 @@ void XManager::DrawSpecific(HObject *obj){
 
 	//글자출력
 	
-//	num2str(obj->Hnumber,obnumber);
+	//num2str(obj->Hnumber,obnumber);
 	sprintf_s(obnumber,"%d",obj->Hnumber);
 	itoa(obj->Hnumber,obnumber,10);
 	
@@ -142,7 +157,4 @@ void XManager::DrawSpecific(HObject *obj){
 	D3DXVec3TransformCoord(&dragoon2,&dragoon,&t);
 	XobjectFont->TextBillBoard(obnumber,dragoon2,&MatView);
 	
-
-
-
 }

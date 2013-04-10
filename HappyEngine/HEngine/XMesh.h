@@ -1,3 +1,10 @@
+//-------------------------------------------------------------------------------------
+// 오브젝트 관리 클래스(기본 X파일)
+// 
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #ifndef _SceneNode_h_
  #define _SceneNode_h_
  #include "Mgr\SceneMgr.h"
@@ -8,15 +15,16 @@
 
 class XMesh{
 public:
-	LPDIRECT3DDEVICE9       m_pDevice;
-    LPD3DXMESH				pMesh;
-	D3DMATERIAL9*			pMat;
-	LPDIRECT3DTEXTURE9*		pTex;
+	LPDIRECT3DDEVICE9       m_pDevice;	//디바이스를 넘겨서 처리
+    LPD3DXMESH				pMesh;		//매쉬 객체
+	D3DMATERIAL9*			pMat;		//마테리얼
+	LPDIRECT3DTEXTURE9*		pTex;		//텍스쳐
 	DWORD					nMat;
-XMesh(LPDIRECT3DDEVICE9 Device);  //Device넘겨야지..
-~XMesh();  //아마 릴리즈를 해야겠지..매니저에서 벡터로 자동소멸될테니..
-BOOL LoadX(char *pName);
-void Disp();   //디스플레이함수
+
+	XMesh(LPDIRECT3DDEVICE9 Device);	//Device넘겨야지..
+	~XMesh();							//아마 릴리즈를 해야겠지..매니저에서 벡터로 자동소멸될테니..
+	BOOL LoadX(char *pName);
+	void Disp();						//디스플레이함수
 };
 
 
@@ -31,12 +39,11 @@ public:
 	virtual void draw(ZFrustum* pFrustum);
 	virtual void SetMesh();
 	
-	TestDummy m_dummy;
-///
-	std::vector<XMesh> XMeshList;
+	TestDummy m_dummy;				//테스트 더미용(위치 정보 얻어오기)
+	std::vector<XMesh> XMeshList;	//XMesh리스트
 	
 
-	HFont* XobjectFont;
+	HFont* XobjectFont;				//오브젝트별 폰트출력용
 
 	BOOL XLoad(char *pName);
 	void DrawSpecific(HObject *obj);  //obj에서 행렬얻어와 계산 후, type비교, number도 얻어와서 number의 Hmesh만 출력

@@ -1,16 +1,21 @@
+//-------------------------------------------------------------------------------------
+//! ºôº¸µå ±¸Çö
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
 #ifndef _SceneNode_h_
  #define _SceneNode_h_
  #include "Mgr\SceneMgr.h"
 #endif
 
 class BillBoard:public SceneNode{
+
 public:
 	RenderMgr* BillRender;
 	BillBoard(RenderMgr* SceneRen);
 	~BillBoard();
 
 	LPDIRECT3DTEXTURE9		m_pTex;
-
 	LPDIRECT3DVERTEXBUFFER9	m_pVB;			
 	LPDIRECT3DINDEXBUFFER9	m_pIB;
 	LPD3DXSPRITE  m_pd3dSprite;

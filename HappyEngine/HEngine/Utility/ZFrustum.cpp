@@ -1,6 +1,13 @@
+//-------------------------------------------------------------------------------------
+// Frustum 관리자
+// 강좌 참조
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "ZFrustum.h"
 
-
+//-------------------------------------------------------------------------------------
 ZFrustum::ZFrustum()
 {
 	ZeroMemory( m_vtx, sizeof( m_vtx[0] ) * 8 );
@@ -9,16 +16,19 @@ ZFrustum::ZFrustum()
 	JCMODE2=4;
 }
 
+//-------------------------------------------------------------------------------------
 BOOL ZFrustum::ViewSet(D3DXMATRIXA16* CameraView){
 	m_matView=CameraView;
 	return TRUE;
 }
 
+//-------------------------------------------------------------------------------------
 BOOL ZFrustum::ProjSet(D3DXMATRIXA16* CameraProj){
 	m_matProj=CameraProj;
 	return TRUE;
 }
 
+//-------------------------------------------------------------------------------------
 // 카메라(view) * 프로젝션(projection)행렬을 입력받아 6개의 평면을 만든다.
 BOOL ZFrustum::Make( D3DXMATRIXA16* pmatViewProj )
 {
@@ -67,7 +77,8 @@ BOOL ZFrustum::Make( D3DXMATRIXA16* pmatViewProj )
 	return TRUE;
 }
 
-/// 한점 v가 프러스텀안에 있으면 TRUE를 반환, 아니면 FALSE를 반환한다.
+//-------------------------------------------------------------------------------------
+// 한점 v가 프러스텀안에 있으면 TRUE를 반환, 아니면 FALSE를 반환한다.
 BOOL ZFrustum::IsIn( D3DXVECTOR3* pv )
 {
 	float		fDist;
@@ -87,6 +98,7 @@ BOOL ZFrustum::IsIn( D3DXVECTOR3* pv )
 	return TRUE;
 }
 
+//-------------------------------------------------------------------------------------
 /** 중심(v)와 반지름(radius)를 갖는 경계구(bounding sphere)가 프러스텀안에 있으면
  *  TRUE를 반환, 아니면 FALSE를 반환한다.
  */
@@ -104,6 +116,7 @@ BOOL ZFrustum::IsInSphere( D3DXVECTOR3* pv, float radius )
 	return TRUE;
 }
 
+//-------------------------------------------------------------------------------------
 /// 프러스텀을 화면에 그려준다.
 BOOL ZFrustum::Draw( LPDIRECT3DDEVICE9 pDev )
 {
@@ -167,6 +180,7 @@ BOOL ZFrustum::Draw( LPDIRECT3DDEVICE9 pDev )
 	return TRUE;
 }
 
+//-------------------------------------------------------------------------------------
 void ZMakePlane( D3DXPLANE* pPlane, D3DXVECTOR3* pv0, D3DXVECTOR3* pv1, D3DXVECTOR3* pv2 )
 {
 	D3DXPlaneFromPoints( pPlane, pv0, pv1, pv2 );

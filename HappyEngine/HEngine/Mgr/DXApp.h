@@ -1,28 +1,31 @@
-
-
+//-------------------------------------------------------------------------------------
+//! DirectX 객체 및 생성 함수
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
 #include "WinApp.h"
 
-
-struct CUSTOMVERTEX
+struct CUSTOMVERTEX  //기본 VERTEX정의
 {
     FLOAT x, y, z;      // 정점의 3차원 좌표 The untransformed, 3D position for the vertex
     DWORD color;        // The vertex color
 };
 #define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_DIFFUSE)
+
 class DXApp{
 public:
-LPDIRECT3D9             g_pD3D;
-LPDIRECT3DDEVICE9       g_pd3dDevice;
-LPDIRECT3DVERTEXBUFFER9 g_pVB;
-LPDIRECT3DINDEXBUFFER9	g_pIB;
+	LPDIRECT3D9             g_pD3D;
+	LPDIRECT3DDEVICE9       g_pd3dDevice;
+	LPDIRECT3DVERTEXBUFFER9 g_pVB;
+	LPDIRECT3DINDEXBUFFER9	g_pIB;
 
-HWND m_hWnd;
+	HWND m_hWnd;
 
-DXApp();
-int InitDXApp(HWND hWnd);
-void Render();
-void print(){};
-void Reset();
+	DXApp();
+	int InitDXApp(HWND hWnd);
+	void Render();
+	void print(){};
+	void Reset();
 };
 
 

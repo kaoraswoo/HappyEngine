@@ -1,15 +1,27 @@
+//-------------------------------------------------------------------------------------
+//! d3d 디바이스 생성 실습용으로 만든 테스트 노드
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "D2TileMgr.h"
 
-D2TileMgr::D2TileMgr(RenderMgr* SceneRen):SceneNode(SceneRen){
+//-------------------------------------------------------------------------------------
+D2TileMgr::D2TileMgr(RenderMgr* SceneRen):SceneNode(SceneRen)
+{
 	TileRender=SceneRen;
 	m_name = "Axis";
 }
 
-void D2TileMgr::draw(ZFrustum* pFrustum){
+//-------------------------------------------------------------------------------------
+void D2TileMgr::draw(ZFrustum* pFrustum)
+{
 	draw();
 }
 
-void D2TileMgr::draw(){
+//-------------------------------------------------------------------------------------
+void D2TileMgr::draw()
+{
 const float l = 20.0f;
 
 	struct sVertex
@@ -40,7 +52,9 @@ const float l = 20.0f;
 
 }
 
-void D2TileMgr::SetMesh(){
+//-------------------------------------------------------------------------------------
+void D2TileMgr::SetMesh()
+{
 
 
 }

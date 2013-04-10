@@ -1,13 +1,23 @@
+//-------------------------------------------------------------------------------------
+//! 픽킹 구현
+//! 원리 해골책 및 인터넷 참조
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "HPick.h"
 
+//-------------------------------------------------------------------------------------
 HPick::HPick(LPDIRECT3DDEVICE9 device)
 {
+
 	m_pd3dDevice = device;
 	tx = -1;
 	ty = -1;
 
 }
 
+//-------------------------------------------------------------------------------------
 // 픽킹광선을 생성한다.(지역좌표까지 변환시킨다.)
 void HPick::PickTestInit(int mouseX, int mouseY)
 {
@@ -38,14 +48,15 @@ void HPick::PickTestInit(int mouseX, int mouseY)
 
 	// 월드 좌표의 역행렬 변환은 각 각의 객체로 가서 한다.
 	// 광선에다가 월드 행렬의 역행렬을 곱해 지역좌표로 변환.
-//	m_pd3dDevice->GetTransform(D3DTS_WORLD, &matWorld);
-//	D3DXMatrixInverse(&matWorld, NULL, &matWorld);
+	//	m_pd3dDevice->GetTransform(D3DTS_WORLD, &matWorld);
+	//	D3DXMatrixInverse(&matWorld, NULL, &matWorld);
 
-//	D3DXVec3TransformCoord(&m_pickRay._origin, &m_pickRay._origin, &matWorld);			// w=1
-//	D3DXVec3TransformNormal(&m_pickRay._direction, &m_pickRay._direction, &matWorld);	// w=0
+	//	D3DXVec3TransformCoord(&m_pickRay._origin, &m_pickRay._origin, &matWorld);			// w=1
+	//	D3DXVec3TransformNormal(&m_pickRay._direction, &m_pickRay._direction, &matWorld);	// w=0
 	::D3DXVec3Normalize(&m_pickRay._direction, &m_pickRay._direction);
 }
 
+//-------------------------------------------------------------------------------------
 // dist는 광선과 교체점까지의 거리.
 // u, v는 삼각형의 교점 좌표.
 BOOL HPick::IntersectTriangle(D3DXVECTOR3 &v0, D3DXVECTOR3 &v1, D3DXVECTOR3 &v2, float &dist)
@@ -77,6 +88,7 @@ BOOL HPick::IntersectTriangle(D3DXVECTOR3 &v0, D3DXVECTOR3 &v1, D3DXVECTOR3 &v2,
 	return true;
 }
 
+//-------------------------------------------------------------------------------------
 BOOL HPick::IntersectSphere(float &fRange, float fRadius, D3DXVECTOR3 vCenter, D3DXMATRIX &matInvTM)
 {
 	// 픽킹광선을 오브젝트의 지역좌표로 변환한다.
@@ -120,6 +132,7 @@ BOOL HPick::IntersectSphere(float &fRange, float fRadius, D3DXVECTOR3 vCenter, D
 	return false;
 }
 
+//-------------------------------------------------------------------------------------
 BOOL HPick::IntersectAABB(D3DXVECTOR3 vMin, D3DXVECTOR3 vMax, D3DXMATRIX &matInvTM)
 {
 	// 픽킹광선을 오브젝트의 지역좌표로 변환한다.
@@ -251,6 +264,7 @@ BOOL HPick::IntersectAABB(D3DXVECTOR3 vMin, D3DXVECTOR3 vMax, D3DXMATRIX &matInv
 	return true;
 }
 
+//-------------------------------------------------------------------------------------
 void HPick::SetTextureCoord( float x, float z, float editInSize, float editOutSize)
 {
 	tx = x;

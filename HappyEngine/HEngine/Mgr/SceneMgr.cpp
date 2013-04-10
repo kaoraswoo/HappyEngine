@@ -1,26 +1,31 @@
+//-------------------------------------------------------------------------------------
+//! 씬매니저 클래스
+//! \author Hwang Je Hyun
+//! \copy Hwang Je Hyun. All rights reserved.
+//-------------------------------------------------------------------------------------
+
 #include "SceneMgr.h"
 
 
-
-
-
-void SceneNode::NodeSetPos(float x, float y, float z){
+//-------------------------------------------------------------------------------------
+void SceneNode::NodeSetPos(float x, float y, float z)
+{
 	Pos.x=x;
 	Pos.y=y;
 	Pos.z=z;
 }
 
-D3DXMATRIX SceneNode::NodeMatrixReturn(){
+//-------------------------------------------------------------------------------------
+D3DXMATRIX SceneNode::NodeMatrixReturn()
+{
+
 	D3DXMATRIX t;
-
 	D3DXMatrixTranslation(&t, Pos.x, Pos.y, Pos.z);
-
-	
-
 	return t;
 
 }
 
+//-------------------------------------------------------------------------------------
 //Frustum
 SceneMgr::SceneMgr()
 {
@@ -29,6 +34,7 @@ SceneMgr::SceneMgr()
 	m_pFrustum = new ZFrustum();
 }
 
+//-------------------------------------------------------------------------------------
 SceneMgr::~SceneMgr(){   //일단은 임시방편으로 전체 다 해제..
 	delete m_pFrustum;
 	delete RenInstance;
@@ -40,13 +46,14 @@ SceneMgr::~SceneMgr(){   //일단은 임시방편으로 전체 다 해제..
 	}
 }
 
+//-------------------------------------------------------------------------------------
 void SceneMgr::AddSceneNode(SceneNode *Snode){
-	
 	//vector
-	printf("애드에서:");
-	SnodeList.push_back(Snode);
+	printf( "추가:%s\n", Snode->m_name );
+	SnodeList.push_back( Snode );
 }
 
+//-------------------------------------------------------------------------------------
 void SceneMgr::AddSceneMapNode(std::string name, SceneNode *Snode){
 	//map
 	m_maplist.insert( std::pair<std::string, SceneNode*>( name, Snode ) );
@@ -60,15 +67,17 @@ std::string SceneMgr::GetSceneNode()
 	}
 }
 */
+//-------------------------------------------------------------------------------------
 SceneNode::SceneNode(RenderMgr* SceneRen){
 
 }
 
 
+//-------------------------------------------------------------------------------------
 ObjectMgr::ObjectMgr(RenderMgr* SceneRen):SceneNode(SceneRen){
 }
 
-
+//-------------------------------------------------------------------------------------
 void SceneMgr::SetCamera()
 {
 	D3DXVECTOR3 vEyePt( -70.0f, 70.0f,-70.0f );
@@ -85,6 +94,7 @@ void SceneMgr::SetCamera()
 
 }
 
+//-------------------------------------------------------------------------------------
 void SceneMgr::UpdateCamera()
 {
 		D3DXMATRIXA16 m_matView;
