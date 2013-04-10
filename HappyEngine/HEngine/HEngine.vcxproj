@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3DA849A9-E07F-CB9E-AA1F-F798AD13BB61}</ProjectGuid>
+    <RootNamespace>HEngine</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../obj/$(ProjectName)_$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_$(Configuration)</TargetName>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../obj/$(ProjectName)_$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <OptimizationLevel>Level0</OptimizationLevel>
+      <AdditionalIncludeDirectories>.;..\External\boost;..\External\DirectXSDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader></PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\External\boost;..\External\DirectXSDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  <Lib>
+    <OutputFile>$(OutDir)$(ProjectName)_$(Configuration).lib</OutputFile>
+    <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;d3d9.lib;d3dx9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\DirectXSDK\Lib\x86;..\External\boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+  </Lib>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <CustomBuildStep>
+      <Command></Command>
+      <Outputs>%(Outputs)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <OptimizationLevel>Level0</OptimizationLevel>
+      <AdditionalIncludeDirectories>.;..\External\boost;..\External\DirectXSDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader></PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..\External\boost;..\External\DirectXSDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  <Lib>
+    <OutputFile>$(OutDir)$(ProjectName)_$(Configuration).lib</OutputFile>
+    <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;d3d9.lib;d3dx9.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\External\DirectXSDK\Lib\x86;..\External\boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+  </Lib>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <CustomBuildStep>
+      <Command></Command>
+      <Outputs>%(Outputs)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BillBoard.h">
+    </ClInclude>
+    <ClInclude Include="D2TileMgr.h">
+    </ClInclude>
+    <ClInclude Include="define.h">
+    </ClInclude>
+    <ClInclude Include="GameProgrammingClass.h">
+    </ClInclude>
+    <ClInclude Include="HappyEngine.h">
+    </ClInclude>
+    <ClInclude Include="HPick.h">
+    </ClInclude>
+    <ClInclude Include="PvsBsp.h">
+    </ClInclude>
+    <ClInclude Include="Q3_BSP.h">
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+    </ClInclude>
+    <ClInclude Include="Splatting.h">
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+    </ClInclude>
+    <ClInclude Include="Test_Dummy.h">
+    </ClInclude>
+    <ClInclude Include="TileQuadTree.h">
+    </ClInclude>
+    <ClInclude Include="TileTerrain.h">
+    </ClInclude>
+    <ClInclude Include="TileTerrainMgr.h">
+    </ClInclude>
+    <ClInclude Include="XMesh.h">
+    </ClInclude>
+    <ClInclude Include="ZQuadTree.h">
+    </ClInclude>
+    <ClInclude Include="ZTerrain.h">
+    </ClInclude>
+    <ClInclude Include="Mgr\DXApp.h">
+    </ClInclude>
+    <ClInclude Include="Mgr\HCCamera.h">
+    </ClInclude>
+    <ClInclude Include="Mgr\Renderer.h">
+    </ClInclude>
+    <ClInclude Include="Mgr\SceneMgr.h">
+    </ClInclude>
+    <ClInclude Include="Mgr\WinApp.h">
+    </ClInclude>
+    <ClInclude Include="Utility\Dib.h">
+    </ClInclude>
+    <ClInclude Include="Utility\HFont.h">
+    </ClInclude>
+    <ClInclude Include="Utility\HObject.h">
+    </ClInclude>
+    <ClInclude Include="Utility\ZFrustum.h">
+    </ClInclude>
+    <ClInclude Include="Utility\ZXML.h">
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BillBoard.cpp">
+    </ClCompile>
+    <ClCompile Include="D2TileMgr.cpp">
+    </ClCompile>
+    <ClCompile Include="GameProgrammingClass.cpp">
+    </ClCompile>
+    <ClCompile Include="HPick.cpp">
+    </ClCompile>
+    <ClCompile Include="PvsBsp.cpp">
+    </ClCompile>
+    <ClCompile Include="Q3_BSP.cpp">
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+    </ClCompile>
+    <ClCompile Include="Splatting.cpp">
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+    </ClCompile>
+    <ClCompile Include="TestClass.cpp">
+    </ClCompile>
+    <ClCompile Include="Test_Dummy.cpp">
+    </ClCompile>
+    <ClCompile Include="TileQuadTree.cpp">
+    </ClCompile>
+    <ClCompile Include="TileTerrain.cpp">
+    </ClCompile>
+    <ClCompile Include="TileTerrainMgr.cpp">
+    </ClCompile>
+    <ClCompile Include="XMesh.cpp">
+    </ClCompile>
+    <ClCompile Include="ZQuadTree.cpp">
+    </ClCompile>
+    <ClCompile Include="ZTerrain.cpp">
+    </ClCompile>
+    <ClCompile Include="Mgr\DXApp.cpp">
+    </ClCompile>
+    <ClCompile Include="Mgr\HCCamera.cpp">
+    </ClCompile>
+    <ClCompile Include="Mgr\Renderer.cpp">
+    </ClCompile>
+    <ClCompile Include="Mgr\SceneMgr.cpp">
+    </ClCompile>
+    <ClCompile Include="Mgr\WinApp.cpp">
+    </ClCompile>
+    <ClCompile Include="Utility\Dib.cpp">
+    </ClCompile>
+    <ClCompile Include="Utility\HFont.cpp">
+    </ClCompile>
+    <ClCompile Include="Utility\HObject.cpp">
+    </ClCompile>
+    <ClCompile Include="Utility\ZFrustum.cpp">
+    </ClCompile>
+    <ClCompile Include="Utility\ZXML.cpp">
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\SimpleShader.fx">
+    </None>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

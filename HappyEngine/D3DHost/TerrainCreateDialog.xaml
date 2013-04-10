@@ -1,0 +1,26 @@
+﻿<Window x:Class="D3DHost.TerrainCreateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        Title="TerrainCreateDialog" Width="400" Height="300" WindowStyle="ToolWindow" MaxWidth="400" MaxHeight="300" MinWidth="400" MinHeight="300">
+    <Grid x:Name="LayoutRoot">
+        <GroupBox Header="New Tile Terrain" Margin="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.858*"/>
+                    <RowDefinition Height="0.142*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Generate" HorizontalAlignment="Right" Margin="0,8,101,9.971" Grid.Row="1" Width="75" d:LayoutOverrides="Height" Click="Button_Click" />
+                <Button Content="Cancel" HorizontalAlignment="Right" Width="75" Margin="0,8.001,8,9.971" Grid.Row="1" d:LayoutOverrides="Height" Click="Button_Click_1" />
+                <TextBox Margin="166,35.04,153.69,0" Name="TileNum" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" d:LayoutOverrides="Width"/>
+                <TextBox TextWrapping="Wrap" Text="8" Name="VertexNum" VerticalAlignment="Top" Margin="166,65.08,153.69,0" d:LayoutOverrides="Width"/>
+                <TextBox TextWrapping="Wrap" Text="4" Name="VertexTerm" Margin="166,0,153.69,86.014" VerticalAlignment="Bottom" d:LayoutOverrides="Width"/>
+                <TextBox TextWrapping="Wrap" Text="0.2" Name="HeightScale" VerticalAlignment="Bottom" Margin="166,0,153.69,53.977" d:LayoutOverrides="Width"/>
+                <TextBlock HorizontalAlignment="Left" Margin="40,35.04,0,0" TextWrapping="Wrap" Text="타일갯수" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="타일당버텍스수" Margin="40,65.08,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="버텍스당 간격" VerticalAlignment="Bottom" Margin="40,0,0,89.015"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="높이비율" VerticalAlignment="Bottom" Margin="40,0,0,59.978"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Mgr">
+      <UniqueIdentifier>{44444DDD-DD66-6667-7777-777777222222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{55557744-4669-966C-CC66-997774477999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{44444446-6661-1117-7774-444666611111}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\SimpleShader.fx">
+      <Filter>Data</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BillBoard.h" />
+    <ClInclude Include="D2TileMgr.h" />
+    <ClInclude Include="define.h" />
+    <ClInclude Include="GameProgrammingClass.h" />
+    <ClInclude Include="HappyEngine.h" />
+    <ClInclude Include="HPick.h" />
+    <ClInclude Include="PvsBsp.h" />
+    <ClInclude Include="Q3_BSP.h" />
+    <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="Splatting.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestClass.h" />
+    <ClInclude Include="Test_Dummy.h" />
+    <ClInclude Include="TileQuadTree.h" />
+    <ClInclude Include="TileTerrain.h" />
+    <ClInclude Include="TileTerrainMgr.h" />
+    <ClInclude Include="XMesh.h" />
+    <ClInclude Include="ZQuadTree.h" />
+    <ClInclude Include="ZTerrain.h" />
+    <ClInclude Include="Mgr\DXApp.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Mgr\HCCamera.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Mgr\Renderer.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Mgr\SceneMgr.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Mgr\WinApp.h">
+      <Filter>Mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Dib.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\HFont.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\HObject.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ZFrustum.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ZXML.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BillBoard.cpp" />
+    <ClCompile Include="D2TileMgr.cpp" />
+    <ClCompile Include="GameProgrammingClass.cpp" />
+    <ClCompile Include="HPick.cpp" />
+    <ClCompile Include="PvsBsp.cpp" />
+    <ClCompile Include="Q3_BSP.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="Splatting.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TestClass.cpp" />
+    <ClCompile Include="Test_Dummy.cpp" />
+    <ClCompile Include="TileQuadTree.cpp" />
+    <ClCompile Include="TileTerrain.cpp" />
+    <ClCompile Include="TileTerrainMgr.cpp" />
+    <ClCompile Include="XMesh.cpp" />
+    <ClCompile Include="ZQuadTree.cpp" />
+    <ClCompile Include="ZTerrain.cpp" />
+    <ClCompile Include="Mgr\DXApp.cpp">
+      <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Mgr\HCCamera.cpp">
+      <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Mgr\Renderer.cpp">
+      <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Mgr\SceneMgr.cpp">
+      <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Mgr\WinApp.cpp">
+      <Filter>Mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Dib.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\HFont.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\HObject.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ZFrustum.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ZXML.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

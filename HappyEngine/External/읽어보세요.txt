@@ -1,0 +1,3 @@
+외부라이브러리 환경
+DirectXSDK :  Microsoft DirectX SDK (June 2010)
+boost :  boost_1_51   ( serialization, filesystem, shared_ptr )
